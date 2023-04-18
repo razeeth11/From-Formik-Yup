@@ -13,14 +13,14 @@ export function App() {
 }
 
 const loginValidation = yup.object({
-      loginEmail: yup.string().required("Not be empty"),
-      loginPassword: yup.string().required("Not be empty").min(8 , 'password must be atleast 8 characters'),
+      loginEmail: yup.string().required("Required field"),
+      loginPassword: yup.string().required("Required field").min(8 , 'password must be atleast 8 characters'),
 })
 
 const signValidation = yup.object({
-      signEmail: yup.string().required("Not be empty"),
-      signPassword: yup.string().required("Not be empty").min(8 , 'password must be atleast 8 characters'),
-      signCPassword: yup.string().required("Not be empty").min(8 , 'password must be atleast 8 characters'),
+      signEmail: yup.string().required("Required field"),
+      signPassword: yup.string().required("Required field").min(8 , 'password must be atleast 8 characters'),
+      signCPassword: yup.string().required("Required field").min(8 , 'password must be atleast 8 characters'),
 })
 
 function Login() {

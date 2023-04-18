@@ -16,6 +16,17 @@ html,body{
   color: #fff;
 }
 
+h1{
+  font-size: 30px;
+  margin: 5px;
+}
+
+small{
+  color:#fa4299 ;
+  text-align: right;
+  cursor: pointer;
+}
+
 .log-sign{
   display: grid;
   grid-template-columns: repeat(2, 1fr);

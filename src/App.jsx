@@ -1,6 +1,7 @@
 import "./App.css";
 import TextField from "@mui/material/TextField";
 import { Formik, useFormik } from "formik";
+import * as yup from 'yup'
 import { useState } from "react";
 
 export function App() {
@@ -10,6 +11,17 @@ export function App() {
     </div>
   );
 }
+
+const loginValidation = yup.object({
+      loginEmail: yup.string().required("Not be empty"),
+      loginPassword: yup.string().required("Not be empty").min(8 , 'password must be atleast 8 characters'),
+})
+
+const signValidation = yup.object({
+      signEmail: yup.string().required("Not be empty"),
+      signPassword: yup.string().required("Not be empty").min(8 , 'password must be atleast 8 characters'),
+      signCPassword: yup.string().required("Not be empty").min(8 , 'password must be atleast 8 characters'),
+})
 
 function Login() {
   const [state, setState] = useState(true);
@@ -23,6 +35,7 @@ function Login() {
       loginEmail: "",
       loginPassword: "",
     },
+    validationSchema : loginValidation ,
     onSubmit : (values)=> console.log(values) 
   });
  
@@ -32,6 +45,7 @@ function Login() {
       signPassword : "",
       signCPassword : "",
     },
+    validationSchema : signValidation ,
     onSubmit : (values)=> console.log(values) 
   });
 
@@ -58,19 +72,25 @@ function Login() {
           <form onSubmit={loginFormik.handleSubmit} className="form-1">
             <TextField
               onChange={loginFormik.handleChange}
+              onBlur={loginFormik.handleBlur}
               name="loginEmail"
               sx={style}
               id="outlined-basic"
               placeholder="Username / Email Address"
               variant="outlined"
+              helperText={loginFormik.touched.loginEmail && loginFormik.errors.loginEmail ? loginFormik.errors.loginEmail : null}
+              error={loginFormik.touched.loginEmail && loginFormik.errors.loginEmail ? loginFormik.errors.loginEmail : null}
             />
             <TextField
               onChange={loginFormik.handleChange}
+              onBlur={loginFormik.handleBlur}
               name="loginPassword"
               sx={style}
               id="outlined-basic"
               placeholder="Password"
               variant="outlined"
+              helperText={loginFormik.touched.loginPassword && loginFormik.errors.loginPassword ? loginFormik.errors.loginPassword : null}
+              error={loginFormik.touched.loginPassword && loginFormik.errors.loginPassword ? loginFormik.errors.loginPassword : null}
             />
 
             <button className="submit-button" type="submit">
@@ -91,28 +111,37 @@ function Login() {
         <div>
           <form onSubmit={signFormik.handleSubmit} className="form-2">
             <TextField
+              onBlur={signFormik.handleBlur}
               onChange={signFormik.handleChange}
               name="signEmail"
               sx={style}
               id="outlined-basic"
               placeholder="Username / Email Address"
               variant="outlined"
+              helperText={signFormik.touched.signEmail && signFormik.errors.signEmail ? signFormik.errors.signEmail : null}
+              error={signFormik.touched.signEmail && signFormik.errors.signEmail ? signFormik.errors.signEmail : null}
             />
             <TextField
+              onBlur={signFormik.handleBlur}
               onChange={signFormik.handleChange}
               name="signPassword"
               sx={style}
               id="outlined-basic"
               placeholder="Password"
               variant="outlined"
+              helperText={signFormik.touched.signPassword && signFormik.errors.signPassword ? signFormik.errors.signPassword : null}
+              error={signFormik.touched.signPassword && signFormik.errors.signPassword ? signFormik.errors.signPassword : null}
             />
             <TextField
+              onBlur={signFormik.handleBlur}
               onChange={signFormik.handleChange}
               name="signCPassword"
               sx={style}
               id="outlined-basic"
               placeholder="Confirm Password"
               variant="outlined"
+              helperText={signFormik.touched.signCPassword && signFormik.errors.signCPassword ? signFormik.errors.signCPassword : null}
+              error={signFormik.touched.signCPassword && signFormik.errors.signCPassword ? signFormik.errors.signCPassword : null}
             />
 
             <button className="submit-button" type="submit">

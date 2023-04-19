@@ -51,6 +51,9 @@ function Login() {
     } else {
       alert("Both password must be same")
     }
+
+    setState(true)
+    alert("Signed Up successfully !")
   }
   });
 

@@ -46,7 +46,12 @@ function Login() {
       signCPassword : "",
     },
     validationSchema : signValidation ,
-    onSubmit : (values)=> console.log(values) 
+    onSubmit : (values)=> {if(values.signPassword == values.signCPassword){
+         console.log(values)
+    } else {
+      alert("Both password must be same")
+    }
+  }
   });
 
   return (
